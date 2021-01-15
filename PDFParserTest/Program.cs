@@ -115,7 +115,7 @@ namespace PDFParserTest
             //Add header titles
             fileStream.WriteLine("id,name,class,dob,location,gpa,type,gender");
 
-            string studentPattern = @"\d+ ([\dq]+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+) (\d+) (\d+/\d+/\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ\.-]*)\d+ (\d+.\d+) (trung bình khá|khá||giỏi) (nam|nữ)";
+            string studentPattern = @"\d+ ([\dq]+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+) (\d+) (\d+/\d+/\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ\.-]*)\d+ (\d+.\d+) (trung bình|trung bình khá|khá||giỏi) (nam|nữ)";
             var regex = new Regex(studentPattern);
             var matches = regex.Matches(str.ToString());
             foreach (Match match in matches)
