@@ -112,21 +112,14 @@ namespace PDFParserTest
                 }
             }
                
+            //Add header titles
+            fileStream.WriteLine("id,name,class,dob,location,gpa,type,gender");
+
             string studentPattern = @"\d+ ([\dq]+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+) (\d+) (\d+/\d+/\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ\.-]*)\d+ (\d+.\d+) (trung bình khá|khá||giỏi) (nam|nữ)";
             var regex = new Regex(studentPattern);
             var matches = regex.Matches(str.ToString());
             foreach (Match match in matches)
             {
-                // System.Console.WriteLine(match.Groups[1].Value); // id
-                // System.Console.WriteLine(match.Groups[2].Value); // fullname
-                // System.Console.WriteLine(match.Groups[3].Value); // class
-                // System.Console.WriteLine(match.Groups[4].Value); // date of birth
-                // System.Console.WriteLine(match.Groups[5].Value); // location
-                // System.Console.WriteLine(match.Groups[6].Value); // GPA
-                // System.Console.WriteLine(match.Groups[7].Value); // type
-                // System.Console.WriteLine(match.Groups[8].Value); // gender
-                // System.Console.WriteLine();
-
                 var studentStr = new StringBuilder();
                 studentStr.Append(match.Groups[1].Value.Trim() + ",");
                 studentStr.Append(match.Groups[2].Value.Trim() + ",");
@@ -135,7 +128,7 @@ namespace PDFParserTest
                 studentStr.Append(match.Groups[5].Value.Trim() + ",");
                 studentStr.Append(match.Groups[6].Value.Trim() + ",");
                 studentStr.Append(match.Groups[7].Value.Trim() + ",");
-                studentStr.Append(match.Groups[8].Value.Trim() + ",");
+                studentStr.Append(match.Groups[8].Value.Trim());
                 fileStream.WriteLine(studentStr.ToString());
             }
 
