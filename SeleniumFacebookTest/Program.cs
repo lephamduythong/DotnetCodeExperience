@@ -10,9 +10,10 @@ namespace SeleniumFacebookTest
     {
         static void Main(string[] args)
         {
-            var driver = new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArgument("headless");
+            var driver = new ChromeDriver(options);
             var js = (IJavaScriptExecutor)driver;
-            
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
