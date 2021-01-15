@@ -94,7 +94,7 @@ namespace PDFParserTest
 
             for (int i = 0; i < docReader.GetPageCount(); i++)
             {
-                using (var pageReader = docReader.GetPageReader(100))
+                using (var pageReader = docReader.GetPageReader(i))
                 {
                     var text = pageReader.GetText();
                     var convertedText = converter.TCVN3ToUnicode(text); 
@@ -112,7 +112,7 @@ namespace PDFParserTest
                 }
             }
                
-            string studentPattern = @"\d+ (\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+) (\d+) (\d+/\d+/\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ\.-]*)\d+ (\d+.\d+) (trung bình khá|khá||giỏi) (nam|nữ)";
+            string studentPattern = @"\d+ ([\dq]+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+) (\d+) (\d+/\d+/\d+) ([a-z\sàáảãạăằắẳẵặâầấẩẫậđèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ\.-]*)\d+ (\d+.\d+) (trung bình khá|khá||giỏi) (nam|nữ)";
             var regex = new Regex(studentPattern);
             var matches = regex.Matches(str.ToString());
             foreach (Match match in matches)
