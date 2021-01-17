@@ -11,34 +11,19 @@ namespace SeleniumFacebookTest
         static void Main(string[] args)
         {
             var options = new ChromeOptions();
-            options.AddArgument("headless");
+            // options.AddArgument("headless");
             var driver = new ChromeDriver(options);
             var js = (IJavaScriptExecutor)driver;
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
-            driver.Url = "https://www.facebook.com/";
+            driver.Url = "http://www.phimmoizz.net/phim/phim-doraemon-nobita-va-nhung-ban-khung-long-moi-9271/xem-phim.html";
             var startTime = DateTime.Now;
             
-            var emailEl = driver.FindElement(By.Id("email"));
-            var passEl = driver.FindElement(By.Id("pass"));
-            var submitLoginEl = driver.FindElement(By.Id("u_0_b"));
-            emailEl.SendKeys("0522811478");
-            passEl.SendKeys("Rongcon@3");
-            submitLoginEl.Click();
             while (true) 
             {
                 Thread.Sleep(2000);
-                var pageSourceLower = driver.PageSource.ToLower();
-                if (pageSourceLower.Contains("phạm thị"))
-                {
-                    System.Console.WriteLine("ok");
-                    js.ExecuteScript("console.log('test test test')");
-                }
-                else 
-                {
-                    System.Console.WriteLine("no");
-                }
+                
             }
         }
     }
