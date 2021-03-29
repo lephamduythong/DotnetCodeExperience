@@ -1,0 +1,15 @@
+  function handleSubmit() {
+    if (activity.id.length === 0) {
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      }; console.log("[- 0 -]");
+      createActivity(newActivity).then(() => {
+        history.push(`/activities/${newActivity.id}`); console.log("[- 1 -]");
+      }); console.log("[- 2 -]");
+    } else {
+      updateActivity(activity).then(() => {
+        history.push(`/activities/${activity.id}`); console.log("[- 3 -]");
+      }); console.log("[- 4 -]");
+    }
+  }

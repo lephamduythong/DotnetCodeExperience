@@ -1,0 +1,52 @@
+-- What ? ---
+Add "console.log", "Debug.Writeline", ... with incremental numbers to track the running process (espcially with async code)
+
+-- Example --
+Original code:
+
+  function handleSubmit() {
+    if (activity.id.length === 0) {
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      console.log("[- 0 -]");
+      createActivity(newActivity).then(() => {
+        history.push(`/activities/${newActivity.id}`);
+        console.log("[- 1 -]");
+      });
+      console.log("[- 2 -]");
+    } else {
+      updateActivity(activity).then(() => {
+        history.push(`/activities/${activity.id}`);
+        console.log("[- 3 -]");
+      });
+      console.log("[- 4 -]");
+    }
+  }
+
+Proccesed code:
+
+  function handleSubmit() {
+    if (activity.id.length === 0) {
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      }; console.log("[- 0 -]");
+      createActivity(newActivity).then(() => {
+        history.push(`/activities/${newActivity.id}`); console.log("[- 1 -]");
+      }); console.log("[- 2 -]");
+    } else {
+      updateActivity(activity).then(() => {
+        history.push(`/activities/${activity.id}`); console.log("[- 3 -]");
+      }); console.log("[- 4 -]");
+    }
+  }
+
+--- Guide ---
+Copy input code to "input.txt"
+Change settings for suitable case
+dotnet run
+Copy output code from "output.txt" to the project
+Ctrl+K, Ctrl+F (Format selection)
+Debug and I hope you can see the f**king bug inside
