@@ -1,15 +1,26 @@
-function handleSubmit() {
-    if (activity.id.length === 0) {
-      let newActivity = {
-        ...activity,
-        id: uuid(),
-      };
-      createActivity(newActivity).then(() => {
-        history.push(`/activities/${newActivity.id}`);
-      });
-    } else {
-      updateActivity(activity).then(() => {
-        history.push(`/activities/${activity.id}`);
-      });
-    }
-  }
+			if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))
+			{
+				ModelState.AddModelError("email", "Email taken");
+				return ValidationProblem();
+			}
+			if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Username))
+			{
+				ModelState.AddModelError("username", "Username taken");
+				return ValidationProblem();
+			}
+
+			var user = new AppUser
+			{
+				DisplayName = registerDto.DisplayName,
+				Email = registerDto.Email,
+				UserName = registerDto.Username
+			};
+
+			var result = await _userManager.CreateAsync(user, registerDto.Password);
+
+			if (result.Succeeded)
+			{
+				return CreateUserObject(user);
+			}
+
+			return BadRequest("Problem registering user");

@@ -1,15 +1,1 @@
-function handleSubmit() {
-    if (activity.id.length === 0) {
-      let newActivity = {
-        ...activity,
-        id: uuid(),
-      }; console.log("[- 0 -]");
-      createActivity(newActivity).then(() => {
-        history.push(`/activities/${newActivity.id}`); console.log("[- 1 -]");
-      }); console.log("[- 2 -]");
-    } else {
-      updateActivity(activity).then(() => {
-        history.push(`/activities/${activity.id}`); console.log("[- 3 -]");
-      }); console.log("[- 4 -]");
-    }
-  }
+			if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))			{				ModelState.AddModelError("email", "Email taken"); System.Diagnostics.Debug.WriteLine("-------------0-------------");				return ValidationProblem(); System.Diagnostics.Debug.WriteLine("-------------1-------------");			}			if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Username))			{				ModelState.AddModelError("username", "Username taken"); System.Diagnostics.Debug.WriteLine("-------------2-------------");				return ValidationProblem(); System.Diagnostics.Debug.WriteLine("-------------3-------------");			}			var user = new AppUser			{				DisplayName = registerDto.DisplayName,				Email = registerDto.Email,				UserName = registerDto.Username			}; System.Diagnostics.Debug.WriteLine("-------------4-------------");			var result = await _userManager.CreateAsync(user, registerDto.Password); System.Diagnostics.Debug.WriteLine("-------------5-------------");			if (result.Succeeded)			{				System.Diagnostics.Debug.WriteLine("-------------6-------------"); return CreateUserObject(user);			}			return BadRequest("Problem registering user"); System.Diagnostics.Debug.WriteLine("-------------7-------------");
